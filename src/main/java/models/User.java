@@ -5,12 +5,17 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String user_password;
 
-    public User(int userId, String firstName, String lastName, String email){
+    public User(){
+    }
+
+    public User(int userId, String firstName, String lastName, String email, String user_password) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.user_password = user_password;
     }
 
     public int getUserId() {
@@ -45,14 +50,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAuthenticationCode() {
-        return authenticationCode;
+    public String getUser_password() {
+        return user_password;
     }
 
-    public void setAuthenticationCode(String authenticationCode) {
-        this.authenticationCode = authenticationCode;
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
-
-    private String authenticationCode;
-
 }
+

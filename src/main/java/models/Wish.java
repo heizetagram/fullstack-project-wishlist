@@ -1,40 +1,52 @@
 package models;
 
 public class Wish {
-    private int productId;
-    private String productName;
-    private String productDescription;
+    private int wishId;
+    private int wishlistId;
+    private String wishName;
+    private String wishDescription;
     private double price;
 
-    public Wish(int productId, String productName, String productDescription, double price) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productDescription = productDescription;
+    public Wish() {
+    }
+
+    public Wish(int productId, String wishName, String wishDescription, double price) {
+        this.wishId = productId;
+        this.wishName = wishName;
+        this.wishDescription = wishDescription;
         this.price = price;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getWishId() {
+        return wishId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setWishId(int wishId) {
+        this.wishId = wishId;
     }
 
-    public String getProductName() {
-        return productName;
+    public int getWishlistId() {
+        return wishlistId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getWishName() {
+        return wishName;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
+    }
+
+    public String getWishDescription() {
+        return wishDescription;
+    }
+
+    public void setWishDescription(String wishDescription) {
+        this.wishDescription = wishDescription;
     }
 
     public double getPrice() {

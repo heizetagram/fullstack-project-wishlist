@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ public class WishListController {
     @Autowired
     private WishlistService wishlistService;
 
+    /* UDKOMMENTERET FORDI JEG SKAL PUSH
     @GetMapping("/wishlist")
     public String viewWishlist(Model model) {
         // lav metode i wishlist
@@ -21,6 +23,8 @@ public class WishListController {
         model.addAttribute("wishlists", wishlists);
         return "wishlist";
     }
+
+     */
 
     @PostMapping("/wishlist/add")
     public String addWishlist(@RequestParam int userId, @RequestParam String wishlistName) {
