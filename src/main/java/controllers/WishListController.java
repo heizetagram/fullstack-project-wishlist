@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import services.WishlistService;
+
 import java.util.List;
 
 @Controller
@@ -19,7 +21,8 @@ public class WishListController {
     @GetMapping("/wishlist")
     public String viewWishlist(Model model) {
         // lav metode i wishlist
-        List<Wishlist> wishlists = wishlistService.getAllWishlists();
+        List<Wishlist> wishlists = wishlistService
+        wishlistService.getWishlists();
         model.addAttribute("wishlists", wishlists);
         return "wishlist";
     }
