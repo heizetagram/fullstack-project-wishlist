@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Wishlist</title>
+</head>
+<body>
+<h1>Add Wishlist</h1>
+<form action="/wishlist/add" method="post">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId">
+
+    <label for="wishlistName">Wishlist Name:</label>
+    <input type="text" id="wishlistName" name="wishlistName">
+
+    <button type="submit">Add Wishlist</button>
+</form>
+
+<form action="/wishlist" method="get">
+    <button>Cancel</button>
+</form>
+</body>
+</html>
