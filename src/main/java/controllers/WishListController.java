@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import services.WishlistService;
 
-import java.util.List;
 
 @Controller
 public class WishListController {
@@ -27,7 +26,6 @@ public class WishListController {
         return "wishlist";
     }
 
-     */
 
     @PostMapping("/wishlist/add")
     public String addWishlist(@RequestParam int userId, @RequestParam String wishlistName) {
