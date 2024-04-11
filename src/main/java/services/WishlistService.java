@@ -18,7 +18,7 @@ public class WishlistService {
         wishlistRepository.deleteWishlist(wishlistId);
     }
 
-    public List<Wishlist> getWishlists(){
+    public List<Wishlist> getAllWishlists(){
         return wishlistRepository.getAllWishlists();
     }
 

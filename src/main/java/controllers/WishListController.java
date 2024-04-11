@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import services.WishlistService;
 
+import java.util.List;
+
 
 @Controller
 public class WishListController {
@@ -16,12 +18,10 @@ public class WishListController {
     @Autowired
     private WishlistService wishlistService;
 
-    /* UDKOMMENTERET FORDI JEG SKAL PUSH
+
     @GetMapping("/wishlist")
-    public String viewWishlist(Model model) {
-        // lav metode i wishlist
-        List<Wishlist> wishlists = wishlistService
-        wishlistService.getWishlists();
+    public String getAllWishlists(Model model) {
+        List<Wishlist> wishlists = wishlistService.getAllWishlists();
         model.addAttribute("wishlists", wishlists);
         return "wishlist";
     }
@@ -29,14 +29,12 @@ public class WishListController {
 
     @PostMapping("/wishlist/add")
     public String addWishlist(@RequestParam int userId, @RequestParam String wishlistName) {
-        // Lad addwishlist metode
         wishlistService.addWishlist(userId, wishlistName);
         return "redirect:/wishlist";
     }
 
     @PostMapping("/wishlist/delete")
     public String deleteWishlist(@RequestParam int wishlistId) {
-        // lav metode i wishlist
         wishlistService.deleteWishlist(wishlistId);
         return "redirect:/wishlist";
     }
