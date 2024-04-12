@@ -19,7 +19,7 @@ public class WishlistRepository {
     }
 
     public void deleteWishlist(int wishlistId){
-        String query = "DELETE FROM wishlist WHERE wishlistId = ?";
+        String query = "DELETE FROM wishlist WHERE wishlist_id = ?";
         jdbcTemplate.update(query, wishlistId);
     }
 
@@ -34,4 +34,15 @@ public class WishlistRepository {
         RowMapper<Wishlist> rowMapper = new BeanPropertyRowMapper<>(Wishlist.class);
         return jdbcTemplate.queryForObject(query, rowMapper, wishlistID);
     }
+
+    public void deleteWishesByWishlistId(int wishlistId) {
+        String query = "DELETE FROM wish WHERE wishlist_id = ?";
+        jdbcTemplate.update(query, wishlistId);
+    }
+
+    public void updateWishlist(int id, String newName) {
+        String query = "UPDATE wishlist SET wishlist_name = ? WHERE wishlist_id = ?";
+        jdbcTemplate.update(query, newName, id);
+    }
+
 }

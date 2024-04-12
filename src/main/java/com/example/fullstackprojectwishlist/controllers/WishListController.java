@@ -42,4 +42,11 @@ public class WishListController {
         wishlistService.deleteWishlist(wishlistId);
         return "redirect:/wishlist";
     }
+
+    @PostMapping("/wishlist/update")
+    public String updateWishlistName(@RequestParam int id, @RequestParam String newName) {
+        wishlistService.updateWishlist(id, newName);
+        return "redirect:/wishlist";
+    }
+
 }
