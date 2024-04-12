@@ -1,10 +1,10 @@
-package controllers;
+package com.example.fullstackprojectwishlist.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import services.UserService;
+import com.example.fullstackprojectwishlist.services.UserService;
 
 
 @Controller

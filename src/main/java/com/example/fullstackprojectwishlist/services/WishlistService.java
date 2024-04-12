@@ -1,13 +1,15 @@
-package services;
+package com.example.fullstackprojectwishlist.services;
 
-import models.Wishlist;
+import com.example.fullstackprojectwishlist.repositories.WishlistRepository;
+import com.example.fullstackprojectwishlist.models.Wishlist;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.WishlistRepository;
 
 import java.util.List;
 
 @Service
 public class WishlistService {
+    @Autowired
     private WishlistRepository wishlistRepository;
 
     public void addWishlist(int userId, String wishlistName) {

@@ -1,4 +1,4 @@
-package models;
+package com.example.fullstackprojectwishlist.models;
 
 public class Wishlist {
     private int wishlistId;

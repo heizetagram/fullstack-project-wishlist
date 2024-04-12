@@ -1,9 +1,11 @@
-package services;
+package com.example.fullstackprojectwishlist.services;
 
-import models.Wish;
+import com.example.fullstackprojectwishlist.models.Wish;
+import com.example.fullstackprojectwishlist.repositories.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.WishRepository;
+
+import java.util.List;
 
 @Service
 public class WishService {
@@ -24,5 +26,9 @@ public class WishService {
     
     public void updateWishById(int wishId, int wishlistId, String wishName, String wishDescription, double price) {
         wishRepository.updateWishById(wishId, wishlistId, wishName, wishDescription, price);
+    }
+
+    public List getAllWishesByWishlistId(int wishlistId) {
+        return wishRepository.getAllWishesByWishlistId(wishlistId);
     }
 }

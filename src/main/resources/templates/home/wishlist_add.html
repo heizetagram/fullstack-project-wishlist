@@ -6,16 +6,16 @@
 </head>
 <body>
 <h1>Add Wishlist</h1>
-<form action="/wishlist/add" method="post">
+<form action="insert_wishlist" method="post">
     <label for="userId">User ID:</label>
     <input type="text" id="userId" name="userId">
-
+    <br>
     <label for="wishlistName">Wishlist Name:</label>
     <input type="text" id="wishlistName" name="wishlistName">
-
+    <br>
     <button type="submit">Add Wishlist</button>
 </form>
-
+<br>
 <form action="/wishlist" method="get">
     <button>Cancel</button>
 </form>

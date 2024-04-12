@@ -1,8 +1,8 @@
-package services;
+package com.example.fullstackprojectwishlist.services;
 
-import models.User;
+import com.example.fullstackprojectwishlist.models.User;
+import com.example.fullstackprojectwishlist.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import repositories.UserRepository;
 
 @Service
 public class UserService {

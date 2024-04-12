@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead><td>Wishlist ID</td><td>Wish name</td><td>Wish desc</td><td>Wish price</td></thead>
+    <tr th:each="wish : ${wishes}">
+        <td th:text="${wish.wishlistId}"></td>
+        <td th:text="${wish.wishName}"></td>
+        <td th:text="${wish.wishDescription}"></td>
+        <td th:text="${wish.price}"></td>
+        <td>
+            <form action="wishlist/delete" method="post">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <button type="submit">Slet</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<form action="/new_wish" method="get">
+    <button type="submit">Tilføj Ønske</button>
+</form>
+
+
+</body>
+</html>

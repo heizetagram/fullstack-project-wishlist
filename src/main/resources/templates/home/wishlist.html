@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+</head>
+<body>
+Wishlist
+<div th:insert="~{home/nav :: nav}"></div>
+
+<table>
+    <thead><td>Wishlist ID</td><td>User ID</td><td>Wishlist Name</td></thead>
+    <tr th:each="wishlist : ${wishlists}">
+        <td th:text="${wishlist.wishlistId}"></td>
+        <td th:text="${wishlist.userId}"></td>
+        <td th:text="${wishlist.wishlistName}"></td>
+        <td>
+            <form action="new_wish" method="get">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <button type="submit">Tilføj Ønske</button>
+            </form>
+            <form action="wishlist/delete" method="post">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <button type="submit">Slet</button>
+            </form>
+            <form action="/wishlist/update" method="post">
+                <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
+                <label for="newName">New Name:</label>
+                <input type="text" id="newName" name="newName" th:value="${wishlist.wishlistName}">
+                <button type="submit">Opdater ønskeliste</button>
+            </form>
+
+        </td>
+    </tr>
+</table>
+<form action="/new_wishlist" method="get">
+    <button type="submit">Tilføj Ønskeliste</button>
+</form>
+</body>
+</html>

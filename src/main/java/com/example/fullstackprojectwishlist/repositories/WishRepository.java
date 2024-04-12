@@ -1,6 +1,6 @@
-package repositories;
+package com.example.fullstackprojectwishlist.repositories;
 
-import models.Wish;
+import com.example.fullstackprojectwishlist.models.Wish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,6 +36,12 @@ public class WishRepository {
                 "price = ? " +
                 "WHERE wish_id = ?;";
         jdbcTemplate.update(query, wishlistId, wishName, wishDescription, price, wishId);
+    }
+
+    public List getAllWishesByWishlistId(int wishlistId) {
+        String query = "SELECT * FROM wishlist WHERE wishlist_id = ?";
+        RowMapper rowMapper = new BeanPropertyRowMapper(Wish.class);
+        return jdbcTemplate.query(query, rowMapper, wishlistId);
     }
 
     // TEST get wishes
