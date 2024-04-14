@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Wishlist</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
 <body>
-Wishlist
-<div th:insert="~{home/nav :: nav}"></div>
-
+<header>
+    <nav class="navbar">
+        <a href="/user">Opret Bruger</a>
+        <a class="active" href="/wishlist">&Oslash;nskelister</a>
+        <a href="/">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+    <!--<div th:insert="~{home/nav :: nav}"></div>-->
+</header>
 <table>
     <thead><td>Wishlist ID</td><td>User ID</td><td>Wishlist Name</td></thead>
     <tr th:each="wishlist : ${wishlists}">
@@ -15,8 +23,9 @@ Wishlist
         <td th:text="${wishlist.userId}"></td>
         <td th:text="${wishlist.wishlistName}"></td>
         <td>
-            <form action="new_wish" method="get">
+            <form action="wish" method="get">
                 <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <input type="hidden" name="wishlistName" th:value="${wishlist.wishlistName}">
                 <button type="submit">Tilføj Ønske</button>
             </form>
             <form action="wishlist/delete" method="post">
@@ -36,5 +45,8 @@ Wishlist
 <form action="/new_wishlist" method="get">
     <button type="submit">Tilføj Ønskeliste</button>
 </form>
+<div class="div2">
+    <footer>Information</footer>
+</div>
 </body>
 </html>
