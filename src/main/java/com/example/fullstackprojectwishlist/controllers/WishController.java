@@ -1,6 +1,7 @@
 package com.example.fullstackprojectwishlist.controllers;
 
 import com.example.fullstackprojectwishlist.models.Wish;
+import com.example.fullstackprojectwishlist.models.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +21,19 @@ public class WishController {
     public String getAllWishes(@RequestParam("wishlistId") int wishlistId, Model model) {
         List<Wish> wishes = wishService.getAllWishesByWishlistId(wishlistId);
         model.addAttribute("wishes", wishes);
-        return "wish/wish";
+        return "home/my_wishlist";
     }
 
     @GetMapping("/new_wish")
     public String insert() {
-        return "wish/wish";
+        return "wish/wish_add";
     }
 
     @PostMapping("/addWish")
     public String addWish(@RequestParam int wishlistId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price) {
         wishService.addWish(wishlistId, wishName, wishDescription, price);
-        return "redirect:wish/wish";
+        return "redirect:wish/my_wishlist";
     }
-
 
     @GetMapping("/prepare_update")
     public String prepareUpdate(@RequestParam int wishId, Model model) {

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class WishRepository {
         jdbcTemplate.update(query, wishlistId, wishName, wishDescription, price, wishId);
     }
 
-    public List getAllWishesByWishlistId(int wishlistId) {
-        String query = "SELECT * FROM wishlist WHERE wishlist_id = ?";
+    public List<Wish> getAllWishesByWishlistId(@RequestParam int wishlistId) {
+        String query = "SELECT * FROM wish WHERE wishlist_id = ?";
         RowMapper rowMapper = new BeanPropertyRowMapper(Wish.class);
         return jdbcTemplate.query(query, rowMapper, wishlistId);
     }

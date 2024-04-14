@@ -4,6 +4,7 @@ import com.example.fullstackprojectwishlist.models.Wish;
 import com.example.fullstackprojectwishlist.repositories.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class WishService {
         wishRepository.updateWishById(wishId, wishlistId, wishName, wishDescription, price);
     }
 
-    public List getAllWishesByWishlistId(int wishlistId) {
+    public List<Wish> getAllWishesByWishlistId(@RequestParam int wishlistId) {
         return wishRepository.getAllWishesByWishlistId(wishlistId);
     }
 }
