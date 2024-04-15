@@ -25,7 +25,6 @@
         <td>
             <form action="wish" method="get">
                 <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
-                <input type="hidden" name="wishlistName" th:value="${wishlist.wishlistName}">
                 <button type="submit">Tilføj Ønske</button>
             </form>
             <form action="wishlist/delete" method="post">

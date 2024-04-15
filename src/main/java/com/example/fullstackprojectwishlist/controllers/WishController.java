@@ -2,6 +2,7 @@ package com.example.fullstackprojectwishlist.controllers;
 
 import com.example.fullstackprojectwishlist.models.Wish;
 import com.example.fullstackprojectwishlist.models.Wishlist;
+import com.example.fullstackprojectwishlist.services.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +18,20 @@ public class WishController {
     @Autowired
     private WishService wishService;
 
+    @Autowired
+    private WishlistService wishlistService;
+
     @GetMapping("/wish")
     public String getAllWishes(@RequestParam("wishlistId") int wishlistId, Model model) {
         List<Wish> wishes = wishService.getAllWishesByWishlistId(wishlistId);
+        Wishlist wishlist = wishlistService.getWishlist(wishlistId);
+
+        model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
         return "home/my_wishlist";
     }
 
-    @GetMapping("/new_wish")
+    @GetMapping("/newWish")
     public String insert() {
         return "wish/wish_add";
     }
