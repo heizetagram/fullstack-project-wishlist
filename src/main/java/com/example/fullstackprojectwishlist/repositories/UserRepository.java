@@ -17,7 +17,7 @@ public class UserRepository {
 
     // Add user
     public void addUser(String firstName, String lastName, String email, String userPassword) {
-        String query = "Insert INTO user(String firstName, String lastName, String email, String userPassword)" +
+        String query = "Insert INTO user(String firstName, String lastName, String email, userPassword)" +
                 "VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, firstName, lastName, email, userPassword);
     }

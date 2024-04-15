@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
 <body>
+<header>
+    <nav class="navbar">
+        <a href="/user">Opret Bruger</a>
+        <a href="/wishlist">&Oslash;nskelister</a>
+        <a class="active" href="/">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+    <!--<div th:insert="~{home/nav :: nav}"></div>-->
+</header>
 <!--<h1>
     <tr th:object="${wishlist}">
         <th th:text="${wishlist.wishlistName}"></th>
     </tr>
 </h1>-->
+<a href="/wishlist"><< Overblik</a>
+<h1 th:text="${wishlist.wishlistName}"></h1>
 
 <table>
     <thead><td>Wishlist ID</td><td>Wish name</td><td>Wish desc</td><td>Wish price</td></thead>
@@ -26,7 +39,8 @@
         </td>-->
     </tr>
 </table>
-<form action="/new_wish" method="get">
+<form action="/newWish" method="get">
+    <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
     <button type="submit">Tilføj Ønske</button>
 </form>
 </body>
