@@ -43,10 +43,16 @@ public class WishListController {
         return "redirect:/wishlist";
     }
 
-    @PostMapping("/wishlist/update")
+   @PostMapping("/wishlist/insert_update")
     public String updateWishlistName(@RequestParam int id, @RequestParam String newName) {
         wishlistService.updateWishlist(id, newName);
         return "redirect:/wishlist";
     }
 
+    @GetMapping("/wishlist/update")
+    public String updateWishlistPage(@RequestParam int id, Model model) {
+        Wishlist wishlist = wishlistService.getWishlist(id);
+        model.addAttribute("wishlist", wishlist);
+        return "home/update_wishlist";
+    }
 }

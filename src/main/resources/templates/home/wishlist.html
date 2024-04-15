@@ -32,11 +32,9 @@
                 <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
                 <button type="submit">Slet</button>
             </form>
-            <form action="/wishlist/update" method="post">
+            <form action="/wishlist/update" method="get">
                 <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
-                <label for="newName">New Name:</label>
-                <input type="text" id="newName" name="newName" th:value="${wishlist.wishlistName}">
-                <button type="submit">Opdater ønskeliste</button>
+                <button type="submit" class="update-btn">Opdater ønskeliste</button>
             </form>
 
         </td>
