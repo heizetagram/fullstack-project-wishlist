@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
-<body>
-<div th:insert="~{home/nav :: nav}"></div>
-<h1>Velkommen til Ønskelisten</h1>
+<body id="frontpageBody">
+    <header>
+        <nav class="navbar">
+            <a href="/user">Opret Bruger</a>
+            <a href="/wishlist">&Oslash;nskelister</a>
+            <a class="active" href="/">Forside</a>
+            <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+            <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+        </nav>
+        <!--<div th:insert="~{home/nav :: nav}"></div>-->
+    </header>
+        <div class="parent" style="background-color: #fffef4">
+    </div>
+<div class="div1">
+    <h1>Velkommen til Ønskelisten</h1>
+    <h2>Her går dine ønsker i opfyldelse!</h2>
+</div>
+<div class="div2">
+    <footer>Information</footer>
+</div>
 </body>
 </html>
