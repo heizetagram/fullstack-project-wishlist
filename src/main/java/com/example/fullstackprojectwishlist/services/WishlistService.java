@@ -37,4 +37,7 @@ public class WishlistService {
         return wishlistRepository.getWishlistIdByWishId(wishId);
     }
 
+    public List<Wishlist> getWishlistsByUserId(int userId) {
+        return wishlistRepository.getWishlistsByUserId(userId);
+    }
 }

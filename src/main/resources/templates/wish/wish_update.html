@@ -8,15 +8,18 @@
 <body>
 <header>
     <nav class="navbar">
-        <a href="/user">Opret Bruger</a>
-        <a href="/wishlist">&Oslash;nskelister</a>
-        <a href="/">Forside</a>
+        <a href="/">Log ud</a>
+        <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+        <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
         <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
 </header>
+<a th:href="@{/wish(wishlistId=${wish.wishlistId}, userId=${user.userId})}">&lt;&lt; Overblik</a>
     <h2>Opdater ønskeliste</h2>
     <form action="/updateWish" method="post">
+        <input type="hidden" name="userId" th:value="${user.userId}">
         <input type="hidden" name="wishId" th:value="${wish.wishId}">
         <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}">
         <input type="text" name="wishName" placeholder="Indtast nyt produktnavn" th:value="${wish.wishName}">

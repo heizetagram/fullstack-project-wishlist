@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my_user</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="/">Log ud</a>
+        <a class="active" th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+        <a th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+</header>
+
+<div class="update-form-container">
+    <table>
+        <thead>
+        <td>Fornavn</td>
+        <td>Efternavn</td>
+        </thead>
+        <form action="/updateUser" method="post">
+            <input type="hidden" name="userId" th:value="${user.userId}">
+            <tr>
+                <td><input type="text" name="newFirstName" placeholder="Indtast fornavn" th:value="${user.firstName}"></td>
+                <td><input type="text" name="newLastName" placeholder="Indtast efternavn" th:value="${user.lastName}"></td>
+            </tr>
+    </table>
+    <button type="submit" class="saveChangesButton">Gem Ændringer</button>
+    </form>
+
+</div>
+<br>
+<form action="/deleteUser" method="post">
+    <input type="hidden" name="userId" th:value="${user.userId}">
+    <button class="deleteButton" type="submit">SLET MIN PROFIL </button>
+</form>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
+</body>
+</html>

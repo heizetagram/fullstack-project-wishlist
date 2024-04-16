@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Wishlist</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
 <body>
+<header>
+    <nav class="navbar">
+        <a href="/">Log ud</a>
+        <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+        <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+</header>
+<a th:href="@{/myWishlists(userId=${user.userId})}"><< Overblik</a>
 <h1>Add Wishlist</h1>
-<form action="insert_wishlist" method="post">
-    <label for="userId">User ID:</label>
-    <input type="text" id="userId" name="userId">
-    <br>
+<form action="/insert_wishlist" method="post">
+    <input type="hidden" id="userId" name="userId" th:value="${user.userId}">
     <label for="wishlistName">Wishlist Name:</label>
     <input type="text" id="wishlistName" name="wishlistName">
     <br>
     <button type="submit">Add Wishlist</button>
 </form>
 <br>
-<form action="/wishlist" method="get">
-    <button>Cancel</button>
-</form>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

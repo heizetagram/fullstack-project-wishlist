@@ -34,4 +34,13 @@ public class UserService {
     public void updateUserName(int userId, String newFirstName, String newLastName) {
         userRepository.updateUserName(userId, newFirstName, newLastName);
     }
+
+    public boolean login(String email, String userPassword) {
+        User user = userRepository.getUserByEmailAndPassword(email, userPassword);
+        return user != null;
+    }
+
+    public User getUserByEmailAndPassword(String email, String userPassword) {
+        return userRepository.getUserByEmailAndPassword(email, userPassword);
+    }
 }
