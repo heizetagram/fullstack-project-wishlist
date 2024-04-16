@@ -49,5 +49,4 @@ public class WishlistRepository {
         String query = "SELECT wishlist_id FROM wish WHERE wish_id = ?";
         return jdbcTemplate.queryForObject(query, Integer.class, wishId);
     }
-
 }

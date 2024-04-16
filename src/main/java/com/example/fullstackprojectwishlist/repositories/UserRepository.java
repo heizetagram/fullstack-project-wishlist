@@ -20,13 +20,25 @@ public class UserRepository {
         String query = "Insert INTO user(first_name, last_name, email, user_password)" +
                 "VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(query, firstName, lastName, email, userPassword);
+    } */
+    // Add user
+    public void addUser(String firstName, String lastName, String email, String userPassword) {
+        String query = "INSERT INTO user (first_name, last_name, email, user_password) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(query, firstName, lastName, email, userPassword);
     }
+
 
     public User getUserById(int userId) {
         String query = "SELECT * FROM user WHERE user_Id = ?;";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.queryForObject(query, rowMapper, userId);
     }
+
+    /*public User getUserById(int userId) {
+        String query = "SELECT user_id, first_name, last_name, email, user_password FROM user WHERE user_id = ?";
+        return jdbcTemplate.queryForObject(query, new Object[]{userId}, new BeanPropertyRowMapper<>(User.class));
+    }*/
+
 
     public void updateUserById(int userId, String firstName, String lastName, String email, String userPassword) {
         String query = "UPDATE user " +
@@ -48,5 +60,10 @@ public class UserRepository {
     public void deleteUser(int userId) {
         String query = "DELETE FROM user WHERE userId = ?";
         jdbcTemplate.update(query, userId);
+    }
+
+    public void updateUserName(int userId, String newFirstName, String newLastName) {
+        String query = "UPDATE user SET first_name = ?, last_name = ? WHERE user_id = ?";
+        jdbcTemplate.update(query, newFirstName, newLastName, userId);
     }
 }
