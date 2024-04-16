@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="/user">Opret Bruger</a>
+        <a href="/wishlist">&Oslash;nskelister</a>
+        <a href="/static">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+</header>
+<div class="update-form-container">
+    <h2>Opdater bruger</h2>
+    <form action="/updateUser" method="post">
+        <input type="hidden" name="userId" th:value="${user.userId}">
+        <label for="newFirstName">New First Name:</label>
+        <input type="text" id="newFirstName" name="newFirstName" placeholder="Enter new first name" th:value="${user.firstName}">
+        <label for="newLastName">New Last Name:</label>
+        <input type="text" id="newLastName" name="newLastName" placeholder="Enter new last name" th:value="${user.lastName}">
+        <button type="submit" class="update-btn">Save</button>
+    </form>
+
+</div>
+<div class="div2">
+    <footer>Information</footer>
+</div>
+</body>
+</html>
