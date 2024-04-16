@@ -5,7 +5,6 @@
     <title>wish_add</title>
 </head>
 <body>
-<body>
 <h1>Add Wish</h1>
 <form action="/addWish" method="post">
     <input type="hidden" id="wishlistId" name="wishlistId" th:value="${wishlist.wishlistId}">
@@ -19,16 +18,11 @@
     <label for="price">Price</label>
     <input type="text" id="price" name="price">
     <br>
-    <button type="submit">Add Wish</button>
+    <button type="submit">Tilføj Ønske</button>
 </form>
 <br>
 <form action="/wishlist" method="get">
     <button>Cancel</button>
-</form>
-</body>
-
-<form action="/new_wish" method="get">
-    <button type="submit">Tilføj Ønske</button>
 </form>
 </body>
 </html>

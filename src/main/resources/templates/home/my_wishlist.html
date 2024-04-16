@@ -9,18 +9,13 @@
 <header>
     <nav class="navbar">
         <a href="/user">Opret Bruger</a>
-        <a href="/wishlist">&Oslash;nskelister</a>
-        <a class="active" href="/">Forside</a>
+        <a class="active" href="/wishlist">&Oslash;nskelister</a>
+        <a href="/">Forside</a>
         <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
     <!--<div th:insert="~{home/nav :: nav}"></div>-->
 </header>
-<!--<h1>
-    <tr th:object="${wishlist}">
-        <th th:text="${wishlist.wishlistName}"></th>
-    </tr>
-</h1>-->
 <a href="/wishlist"><< Overblik</a>
 <h1 th:text="${wishlist.wishlistName}"></h1>
 
@@ -31,12 +26,14 @@
         <td th:text="${wish.wishName}"></td>
         <td th:text="${wish.wishDescription}"></td>
         <td th:text="${wish.price}"></td>
-        <!--<td>
-            <form action="wishlist/delete" method="post">
-                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
-                <button type="submit">Slet</button>
-            </form>
-        </td>-->
+        <td><form action="/prepareWishUpdate" method="get">
+            <input type="hidden" name="wishId" th:value="${wish.wishId}">
+            <button type="submit">Opdater</button>
+        </form></td>
+        <td><form action="/deleteWish" method="post">
+            <input type="hidden" name="wishId" th:value="${wish.wishId}">
+            <button type="submit">Slet</button>
+        </form></td>
     </tr>
 </table>
 <form action="/newWish" method="get">

@@ -24,6 +24,10 @@ public class WishService {
     public Wish prepareUpdate(int wishId) {
         return wishRepository.getWishById(wishId);
     }
+
+    public void deleteWishById(int wishId) {
+        wishRepository.deleteWishById(wishId);
+    }
     
     public void updateWishById(int wishId, int wishlistId, String wishName, String wishDescription, double price) {
         wishRepository.updateWishById(wishId, wishlistId, wishName, wishDescription, price);

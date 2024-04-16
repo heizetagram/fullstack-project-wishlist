@@ -21,8 +21,9 @@ public class WishController {
     @Autowired
     private WishlistService wishlistService;
 
+    // Wish 'front page'
     @GetMapping("/wish")
-    public String getAllWishes(@RequestParam("wishlistId") int wishlistId, Model model) {
+    public String getAllWishes(@RequestParam int wishlistId, Model model) {
         List<Wish> wishes = wishService.getAllWishesByWishlistId(wishlistId);
         Wishlist wishlist = wishlistService.getWishlist(wishlistId);
 
@@ -31,20 +32,37 @@ public class WishController {
         return "home/my_wishlist";
     }
 
+    // Create wish
     @GetMapping("/newWish")
-    public String insert() {
+    public String insert(@RequestParam int wishlistId, Model model) {
+        Wishlist wishlist = wishlistService.getWishlist(wishlistId);
+        model.addAttribute("wishlist", wishlist);
         return "wish/wish_add";
     }
-
     @PostMapping("/addWish")
-    public String addWish(@RequestParam int wishlistId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price) {
+    public String addWish(@RequestParam int wishlistId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price, Model model) {
         wishService.addWish(wishlistId, wishName, wishDescription, price);
-        return "redirect:wish/my_wishlist";
+        getAllWishes(wishlistId, model);
+        return "home/my_wishlist";
     }
 
-    @GetMapping("/prepare_update")
+    // Delete wish
+    @PostMapping("/deleteWish")
+    public String deleteWish(@RequestParam int wishId) {
+        int wishlistId = wishlistService.getWishlistIdByWishId(wishId);
+        wishService.deleteWishById(wishId);
+        return "redirect:/wish?wishlistId=" + wishlistId;
+    }
+
+    // Update wish
+    @GetMapping("/prepareWishUpdate")
     public String prepareUpdate(@RequestParam int wishId, Model model) {
-        model.addAttribute(wishService.prepareUpdate(wishId));
+        model.addAttribute("wish", wishService.prepareUpdate(wishId));
         return "wish/wish_update";
+    }
+    @PostMapping("/updateWish")
+    public String updateWish(@RequestParam int wishId, @RequestParam int wishlistId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price) {
+        wishService.updateWishById(wishId, wishlistId, wishName, wishDescription, price);
+        return "redirect:/wish?wishlistId=" + wishlistId;
     }
 }
