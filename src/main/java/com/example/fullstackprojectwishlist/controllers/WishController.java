@@ -39,6 +39,7 @@ public class WishController {
         model.addAttribute("wishlist", wishlist);
         return "wish/wish_add";
     }
+
     @PostMapping("/addWish")
     public String addWish(@RequestParam int wishlistId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price, Model model) {
         wishService.addWish(wishlistId, wishName, wishDescription, price);

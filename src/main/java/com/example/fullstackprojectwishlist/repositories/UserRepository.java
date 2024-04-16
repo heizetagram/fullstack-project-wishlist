@@ -16,16 +16,16 @@ public class UserRepository {
     JdbcTemplate jdbcTemplate;
 
     // Add user
-    public void addUser(String firstName, String lastName, String email, String userPassword) {
-        String query = "Insert INTO user(String firstName, String lastName, String email, userPassword)" +
-                "VALUES (?, ?, ?, ?, ?)";
+   /* public void addUser(String firstName, String lastName, String email, String userPassword) {
+        String query = "Insert INTO user(first_name, last_name, email, user_password)" +
+                "VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(query, firstName, lastName, email, userPassword);
     }
 
-
     public User getUserById(int userId) {
         String query = "SELECT * FROM user WHERE user_Id = ?;";
-        return jdbcTemplate.queryForObject(query, User.class, userId);
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+        return jdbcTemplate.queryForObject(query, rowMapper, userId);
     }
 
     public void updateUserById(int userId, String firstName, String lastName, String email, String userPassword) {
@@ -39,7 +39,7 @@ public class UserRepository {
         jdbcTemplate.update(query, userId, firstName, lastName, email, userPassword);
     }
 
-    public List<User> getUsers() {
+    public List<User> getAllUsers() {
         String query = "SELECT  * FROM user";
         RowMapper rowMapper = new BeanPropertyRowMapper(User.class);
         return jdbcTemplate.query(query, rowMapper);

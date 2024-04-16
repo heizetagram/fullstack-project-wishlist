@@ -50,11 +50,4 @@ public class WishRepository {
         String query = "DELETE FROM wish WHERE wish_id = ?;";
         jdbcTemplate.update(query, wishId);
     }
-
-    // TEST get wishes
-    public List<Wish> getWishes() {
-        String query = "SELECT * FROM wish;";
-        RowMapper rowMapper = new BeanPropertyRowMapper(Wish.class);
-        return jdbcTemplate.query(query, rowMapper);
-    }
 }

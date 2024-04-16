@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Controller
-public class WishListController {
+public class WishlistController {
 
     @Autowired
     private WishlistService wishlistService;

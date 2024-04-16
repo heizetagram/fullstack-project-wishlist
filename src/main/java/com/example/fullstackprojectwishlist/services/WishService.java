@@ -17,10 +17,6 @@ public class WishService {
         wishRepository.addWish(wishlistId, wishName, wishDescription, price);
     }
 
-    public void getWishById(int wishId) {
-        wishRepository.getWishById(wishId);
-    }
-
     public Wish prepareUpdate(int wishId) {
         return wishRepository.getWishById(wishId);
     }

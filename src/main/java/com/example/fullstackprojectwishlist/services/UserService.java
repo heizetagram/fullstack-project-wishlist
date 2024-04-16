@@ -2,10 +2,14 @@ package com.example.fullstackprojectwishlist.services;
 
 import com.example.fullstackprojectwishlist.models.User;
 import com.example.fullstackprojectwishlist.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
+    @Autowired
     UserRepository userRepository;
 
     public void addUser(String firstName, String lastName, String email, String userPassword) {
@@ -19,8 +23,15 @@ public class UserService {
     public void updateUserById(int userId, String firstName, String lastName, String email, String userPassword) {
         userRepository.updateUserById(userId, firstName, lastName, email, userPassword);
     }
-   public void deleteUser(int userId){
-      userRepository.deleteUser(userId);
+   public void deleteUserById(int userId) {
+        userRepository.deleteUserById(userId);
     }
 
+    public List<User> getAllUsers() {
+        return  userRepository.getAllUsers();
+    }
+
+    public void updateUserName(int userId, String newFirstName, String newLastName) {
+        userRepository.updateUserName(userId, newFirstName, newLastName);
+    }
 }
