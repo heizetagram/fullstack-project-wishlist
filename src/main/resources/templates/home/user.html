@@ -12,13 +12,13 @@ User
     <button type="submit">new user</button>
 </form>
 
-<! <table>
+<!> <table>
     <thead><td>firstName</td> <td>lastName</td><td>User ID</td></thead>
-    <tr th:each="user : ${Users}">
+    <tr th:each="user : ${users}">
     <td th:text="${users.firstName}"></td>
     <td th:text="${users.lastName}"></td>
     <td th:text="${users.userId}"></td>
     <td>
-</table> >
+</table>
 </body>
 </html>
