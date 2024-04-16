@@ -16,7 +16,7 @@ public class WishRepository {
     JdbcTemplate jdbcTemplate;
 
     // Add wish
-    public void addWish(int wishlistId, String wishName, String wishDescription, double price) {
+    public void addWish(@RequestParam int wishlistId, String wishName, String wishDescription, double price) {
         String query = "INSERT INTO wish(wishlist_id, wish_name, wish_description, price) " +
                 "VALUES (?, ?, ?, ?);";
         jdbcTemplate.update(query, wishlistId, wishName, wishDescription, price);
@@ -25,7 +25,8 @@ public class WishRepository {
     // Get a single wish by wishId
     public Wish getWishById(int wishId) {
         String query = "SELECT * FROM wish WHERE wish_id = ?;";
-        return jdbcTemplate.queryForObject(query, Wish.class, wishId);
+        RowMapper<Wish> rowMapper = new BeanPropertyRowMapper<>(Wish.class);
+        return jdbcTemplate.queryForObject(query, rowMapper, wishId);
     }
 
     // Update wish by wishId
@@ -43,6 +44,11 @@ public class WishRepository {
         String query = "SELECT * FROM wish WHERE wishlist_id = ?";
         RowMapper rowMapper = new BeanPropertyRowMapper(Wish.class);
         return jdbcTemplate.query(query, rowMapper, wishlistId);
+    }
+
+    public void deleteWishById(int wishId) {
+        String query = "DELETE FROM wish WHERE wish_id = ?;";
+        jdbcTemplate.update(query, wishId);
     }
 
     // TEST get wishes

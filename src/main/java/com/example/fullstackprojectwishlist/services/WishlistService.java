@@ -33,5 +33,8 @@ public class WishlistService {
         wishlistRepository.updateWishlist(id, newName);
     }
 
+    public int getWishlistIdByWishId(int wishId) {
+        return wishlistRepository.getWishlistIdByWishId(wishId);
+    }
 
 }
