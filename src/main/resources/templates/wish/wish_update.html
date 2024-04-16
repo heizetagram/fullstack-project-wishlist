@@ -24,8 +24,6 @@
         <input type="text" name="price" placeholder="Indtast nye pris" th:value="${wish.price}">
         <button type="submit" class="update-btn">Gem</button>
     </form>
-<div class="div2">
-    <footer>Information</footer>
-</div>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>
