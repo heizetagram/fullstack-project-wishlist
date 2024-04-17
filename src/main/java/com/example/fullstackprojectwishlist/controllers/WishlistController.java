@@ -29,7 +29,7 @@ public class WishlistController {
     public String insert(@RequestParam int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
-        return "home/wishlist_add";
+        return "wishlist/wishlist_add";
     }
 
     @PostMapping("/insert_wishlist")
@@ -56,7 +56,7 @@ public class WishlistController {
         User user = userService.getUserById(userId);
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("user", user);
-        return "home/update_wishlist";
+        return "wishlist/update_wishlist";
     }
 
     // User's wishlists
