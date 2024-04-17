@@ -24,12 +24,6 @@ public class WishlistController {
     private UserService userService;
 
 
-    @GetMapping("/wishlist")
-    public String getAllWishlists(Model model) {
-        List<Wishlist> wishlists = wishlistService.getAllWishlists();
-        model.addAttribute("wishlists", wishlists);
-        return "home/wishlist";
-    }
 
     @GetMapping("/new_wishlist")
     public String insert(@RequestParam int userId, Model model) {
