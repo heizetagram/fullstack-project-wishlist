@@ -20,10 +20,6 @@ public class WishlistService {
         wishlistRepository.deleteWishlist(wishlistId);
     }
 
-    public List<Wishlist> getAllWishlists(){
-        return wishlistRepository.getAllWishlists();
-    }
-
     public Wishlist getWishlist(int wishlistID){
         return wishlistRepository.getWishlist(wishlistID);
     }

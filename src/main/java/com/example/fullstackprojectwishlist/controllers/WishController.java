@@ -35,7 +35,7 @@ public class WishController {
         model.addAttribute("user", user);
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
-        return "home/my_wishlist";
+        return "wishlist/my_wishlist";
     }
 
     // Create wish
@@ -52,7 +52,7 @@ public class WishController {
     public String addWish(@RequestParam int wishlistId, @RequestParam int userId, @RequestParam String wishName, @RequestParam String wishDescription, @RequestParam double price, Model model) {
         wishService.addWish(wishlistId, wishName, wishDescription, price);
         getAllWishes(wishlistId, userId, model);
-        return "home/my_wishlist";
+        return "wishlist/my_wishlist";
     }
 
     // Delete wish
