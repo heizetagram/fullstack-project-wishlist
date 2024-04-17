@@ -23,8 +23,6 @@ public class WishlistController {
     @Autowired
     private UserService userService;
 
-
-
     @GetMapping("/new_wishlist")
     public String insert(@RequestParam int userId, Model model) {
         User user = userService.getUserById(userId);

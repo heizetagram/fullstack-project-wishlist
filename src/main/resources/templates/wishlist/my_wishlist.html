@@ -20,6 +20,12 @@
 
 <a th:href="@{/myWishlists(userId=${user.userId})}"><< Overblik</a>
 <h1 th:text="${wishlist.wishlistName}"></h1>
+<p><h3>Kopier linket for at dele din ønskeliste med andre:</h3>
+<div class="link-box">
+    <a th:text="'http://127.0.0.1:8080/wish?wishlistId=' + ${wishlist.wishlistId} + '&userId=' + ${user.userId}"></a>
+</div>
+<br>
+
 
 <table>
     <thead><td>Produkt</td><td>Beskrivelse</td><td>Pris</td></thead>

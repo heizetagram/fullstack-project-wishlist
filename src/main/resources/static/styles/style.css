@@ -125,6 +125,54 @@ thead {
     float: left;
 }
 
+.link-box {
+    display: block;
+    width: max-content;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #ffffff;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.link-box a {
+    color: #101010;
+    text-decoration: none;
+}
+
+/* Modify this CSS in your style.css file */
+.wishlist-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Adjust the gap as needed */
+}
+
+.wishlist-box {
+    position: relative; /* Position relative for containing absolute positioned label */
+    flex: 1;
+    min-width: 250px; /* Minimum size of the boxes */
+    max-width: 300px; /* Maximum size of the boxes */
+    border: 1px solid #ccc; /* Border for the boxes */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Inner spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #fff;
+}
+
+.wishlist-view-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the entire width of the wishlist-box */
+    height: 100%; /* Cover the entire height of the wishlist-box */
+    cursor: pointer;
+    z-index: 1; /* Ensure the label is above the button */
+    opacity: 0;
+}
+
+
+
 #frontpageLogo {
     width: 4rem;
     height: 4rem;
