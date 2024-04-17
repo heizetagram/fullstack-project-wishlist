@@ -69,5 +69,4 @@ public class WishlistController {
         model.addAttribute("wishlists", wishlists);
         return "wishlist/my_wishlists";
     }
-
 }
