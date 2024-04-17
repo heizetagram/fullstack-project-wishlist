@@ -17,15 +17,17 @@
     </nav>
     <!--<div th:insert="~{home/nav :: nav}"></div>-->
 </header>
-<table>
-    <thead><td><h1>Mine Ønskelister</h1></td></thead>
-    <tr th:each="wishlist : ${wishlists}">
-        <td th:text="${wishlist.wishlistName}"></td>
-        <td>
+    <td><h1>Mine Ønskelister</h1></td>
+<div class="wishlist-container">
+    <div th:each="wishlist : ${wishlists}" class="wishlist-box">
+        <div class="wishlist-name" th:text="${wishlist.wishlistName}">Wishlist Name</div>
+        <div class="wishlist-actions">
             <form action="wish" method="get">
                 <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
                 <input type="hidden" name="userId" th:value="${user.userId}">
-                <button type="submit">Se ønsker</button>
+                <button type="submit" th:id="'wishlistButton_' + ${wishlist.wishlistId}">Se ønsker
+                    <label th:for="'wishlistButton_' + ${wishlist.wishlistId}" class="wishlist-view-label"></label>
+                </button>
             </form>
             <form action="wishlist/delete" method="post">
                 <input type="hidden" name="userId" th:value="${user.userId}">
@@ -37,10 +39,36 @@
                 <input type="hidden" name="userId" th:value="${user.userId}">
                 <button type="submit" class="update-btn">Opdater ønskeliste</button>
             </form>
+        </div>
+    </div>
+</div>
 
-        </td>
-    </tr>
-</table>
+
+
+
+
+
+<!--<tr th:each="wishlist : ${wishlists}">
+    <td th:text="${wishlist.wishlistName}"></td>
+    <td>
+        <form action="wish" method="get">
+            <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+            <input type="hidden" name="userId" th:value="${user.userId}">
+            <button type="submit">Se ønsker</button>
+        </form>
+        <form action="wishlist/delete" method="post">
+            <input type="hidden" name="userId" th:value="${user.userId}">
+            <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+            <button type="submit">Slet</button>
+        </form>
+        <form action="/wishlist/update" method="get">
+            <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
+            <input type="hidden" name="userId" th:value="${user.userId}">
+            <button type="submit" class="update-btn">Opdater ønskeliste</button>
+        </form>
+
+    </td>
+</tr>-->
 <form action="/new_wishlist" method="get">
     <input type="hidden" name="userId" th:value="${user.userId}">
     <button type="submit">Tilføj Ønskeliste</button>
