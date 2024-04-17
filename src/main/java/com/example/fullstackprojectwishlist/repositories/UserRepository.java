@@ -15,13 +15,6 @@ public class UserRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    // Add user
-   /* public void addUser(String firstName, String lastName, String email, String userPassword) {
-        String query = "Insert INTO user(first_name, last_name, email, user_password)" +
-                "VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(query, firstName, lastName, email, userPassword);
-    } */
-    // Add user
     public void addUser(String firstName, String lastName, String email, String userPassword) {
         String query = "INSERT INTO user (first_name, last_name, email, user_password) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(query, firstName, lastName, email, userPassword);
@@ -33,12 +26,6 @@ public class UserRepository {
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.queryForObject(query, rowMapper, userId);
     }
-
-    /*public User getUserById(int userId) {
-        String query = "SELECT user_id, first_name, last_name, email, user_password FROM user WHERE user_id = ?";
-        return jdbcTemplate.queryForObject(query, new Object[]{userId}, new BeanPropertyRowMapper<>(User.class));
-    }*/
-
 
     public void updateUserById(int userId, String firstName, String lastName, String email, String userPassword) {
         String query = "UPDATE user " +

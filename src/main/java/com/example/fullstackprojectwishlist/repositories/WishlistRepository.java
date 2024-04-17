@@ -23,12 +23,6 @@ public class WishlistRepository {
         jdbcTemplate.update(query, wishlistId);
     }
 
-    public List getAllWishlists(){
-        String query = "SELECT * FROM wishlist";
-        RowMapper rowMapper = new BeanPropertyRowMapper(Wishlist.class);
-        return jdbcTemplate.query(query, rowMapper);
-    }
-
     public Wishlist getWishlist(int wishlistID) {
         String query = "SELECT * FROM wishlist WHERE wishlist_id = ?";
         RowMapper<Wishlist> rowMapper = new BeanPropertyRowMapper<>(Wishlist.class);

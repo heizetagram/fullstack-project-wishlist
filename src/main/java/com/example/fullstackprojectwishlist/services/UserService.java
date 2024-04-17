@@ -27,10 +27,6 @@ public class UserService {
         userRepository.deleteUserById(userId);
     }
 
-    public List<User> getAllUsers() {
-        return  userRepository.getAllUsers();
-    }
-
     public void updateUserName(int userId, String newFirstName, String newLastName) {
         userRepository.updateUserName(userId, newFirstName, newLastName);
     }
