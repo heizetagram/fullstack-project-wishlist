@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.fullstackprojectwishlist.services.UserService;
 import org.springframework.ui.Model;
-import java.util.List;
 
 
 @Controller
@@ -16,14 +15,6 @@ public class UserController {
 
     @Autowired
      private UserService userService;
-
-    // User 'front page' #skal nok ændres
-    @GetMapping("/user")
-    public String getAllUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-        return "home/user";
-    }
 
     // Create user
     @GetMapping("/newUser")
