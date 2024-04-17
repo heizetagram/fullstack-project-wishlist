@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS user (
 
 -- Create Wishlists table
 CREATE TABLE IF NOT EXISTS wishlist (
-                                    wishlist_id				INT				NOT NULL	PRIMARY KEY		AUTO_INCREMENT,
-                                    user_id					INT				NOT NULL,
-                                    wishlist_name			VARCHAR(255)	NOT NULL,
-                                    FOREIGN KEY (user_id) REFERENCES user(user_id)
+                                        wishlist_id				INT				NOT NULL	PRIMARY KEY		AUTO_INCREMENT,
+                                        user_id					INT				NOT NULL,
+                                        wishlist_name			VARCHAR(255)	NOT NULL,
+                                        FOREIGN KEY (user_id) REFERENCES user(usser_id) ON DELETE CASCADE
 );
 
 -- Create Wish table
@@ -25,10 +25,8 @@ CREATE TABLE IF NOT EXISTS wish (
                                     wish_name				VARCHAR(255)	NOT NULL,
                                     wish_description		VARCHAR(255),
                                     price					DOUBLE(10,2)	NOT NULL,
-                                    FOREIGN KEY (wishlist_id) REFERENCES wishlist(wishlist_id)
+                                    FOREIGN KEY (wishlist_id) REFERENCES wishlist(wishlist_id) ON DELETE CASCADE
 );
-
--- MYSQL Autogenererer en primary key kolonne
 
 -- DATA INSERT --
 -- Insert users
