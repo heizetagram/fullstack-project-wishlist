@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my_wishlists</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="/">Log ud</a>
+        <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+        <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+    <!--<div th:insert="~{home/nav :: nav}"></div>-->
+</header>
+<table>
+    <thead><td><h1>Mine Ønskelister</h1></td></thead>
+    <tr th:each="wishlist : ${wishlists}">
+        <td th:text="${wishlist.wishlistName}"></td>
+        <td>
+            <form action="wish" method="get">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <button type="submit">Se ønsker</button>
+            </form>
+            <form action="wishlist/delete" method="post">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <button type="submit">Slet</button>
+            </form>
+            <form action="/wishlist/update" method="get">
+                <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <button type="submit" class="update-btn">Opdater ønskeliste</button>
+            </form>
+
+        </td>
+    </tr>
+</table>
+<form action="/new_wishlist" method="get">
+    <input type="hidden" name="userId" th:value="${user.userId}">
+    <button type="submit">Tilføj Ønskeliste</button>
+</form>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
+</body>
+</html>

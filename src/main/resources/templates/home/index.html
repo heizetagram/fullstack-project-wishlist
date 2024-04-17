@@ -8,10 +8,10 @@
 <body id="frontpageBody">
     <header>
         <nav class="navbar">
-            <a href="/user">Opret Bruger</a>
-            <a href="/wishlist">&Oslash;nskelister</a>
+            <a href="/login">Log ind</a>
+            <a href="/newUser">Opret Bruger</a>
             <a class="active" href="/">Forside</a>
-            <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+            <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo" onclick="window.location.href='/';" style="cursor:pointer;"/></b>
             <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
         </nav>
         <!--<div th:insert="~{home/nav :: nav}"></div>-->

@@ -31,9 +31,11 @@ public class UserController {
         return "user/user_add";
     }
     @PostMapping("/addUser")
-    public String addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userPassword) {
+    public String addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userPassword, Model model) {
         userService.addUser(firstName, lastName, email, userPassword);
-        return "redirect:/user";
+        User user = userService.getUserByEmailAndPassword(email, userPassword);
+        model.addAttribute("user", user);
+        return "user/user_frontpage";
     }
 
 
@@ -41,7 +43,7 @@ public class UserController {
     @PostMapping("/deleteUser")
     public String deleteUsers(@RequestParam int userId) {
        userService.deleteUserById(userId);
-        return "redirect:/user";
+        return "home/index";
     }
 
     // Update user
@@ -52,10 +54,39 @@ public class UserController {
         return "user/user_update";
     }
     @PostMapping("/updateUser")
-    public String updateUserName(@RequestParam int userId, @RequestParam String newFirstName, @RequestParam String newLastName) {
+    public String updateUserName(@RequestParam int userId, @RequestParam String newFirstName, @RequestParam String newLastName, Model model) {
         userService.updateUserName(userId, newFirstName, newLastName);
-        return "redirect:/user";
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "user/my_user";
     }
 
+    // User login
+    @PostMapping("/loginAttempt")
+    public String loginAttempt(@RequestParam String email, @RequestParam String userPassword, Model model) {
+        boolean loginAttempt = userService.login(email, userPassword);
+        if (loginAttempt) {
+            User user = userService.getUserByEmailAndPassword(email, userPassword);
+            model.addAttribute("user", user);
+            return "user/user_frontpage";
+        } else {
+            return "redirect:/login";
+        }
+    }
 
+    // User front page
+    @GetMapping("/userFrontpage")
+    public String userFrontpage(@RequestParam int userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "user/user_frontpage";
+    }
+
+    // My user
+    @GetMapping("/myUser")
+    public String myUser(@RequestParam int userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "user/my_user";
+    }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_frontpage</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+</head>
+<body id="frontpageBody">
+<header>
+    <nav class="navbar">
+        <a href="/">Log ud</a>
+        <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+        <a th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+        <a class="active" th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+</header>
+<div class="parent" style="background-color: #fffef4">
+</div>
+<div class="div1">
+    <h1 style="color: white" th:text="'Hej ' + ${user.firstName} + '!'"></h1>
+    <h2 style="color:white">Tryk på Mine Ønskelister for at gå i gang!</h2>
+</div>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
+</body>
+</html>

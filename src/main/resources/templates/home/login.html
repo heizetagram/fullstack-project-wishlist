@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a class="active" href="/login">Log ind</a>
+        <a href="/newUser">Opret Bruger</a>
+        <a href="/">Forside</a>
+        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo" onclick="window.location.href='/';" style="cursor:pointer;"/></b>
+        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+    </nav>
+    <!--<div th:insert="~{home/nav :: nav}"></div>-->
+</header>
+<h2>Log ind med e-mail</h2>
+<a>Du skal have en profil hos Ønskelisten for at fortsætte</a>
+<form action="/loginAttempt" method="post">
+    <label for="email">E-MAIL</label>
+    <input type="email" id="email" name="email" placeholder="Indtast e-mail">
+    <br>
+    <label for="password">KODEORD</label>
+    <input type="password" id="password" name="userPassword" placeholder="Indtast kodeord">
+    <br>
+    <button type="submit">Log ind</button>
+</form>
+<div class="div2" th:insert="~{home/footer :: footer}"></div>
+</body>
+</html>

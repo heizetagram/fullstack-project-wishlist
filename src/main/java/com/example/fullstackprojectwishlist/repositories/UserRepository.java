@@ -53,17 +53,28 @@ public class UserRepository {
 
     public List<User> getAllUsers() {
         String query = "SELECT  * FROM user";
-        RowMapper rowMapper = new BeanPropertyRowMapper(User.class);
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper(User.class);
         return jdbcTemplate.query(query, rowMapper);
     }
 
-    public void deleteUser(int userId) {
-        String query = "DELETE FROM user WHERE userId = ?";
+    public void deleteUserById(int userId) {
+        String query = "DELETE FROM user WHERE user_id = ?";
         jdbcTemplate.update(query, userId);
     }
 
     public void updateUserName(int userId, String newFirstName, String newLastName) {
         String query = "UPDATE user SET first_name = ?, last_name = ? WHERE user_id = ?";
         jdbcTemplate.update(query, newFirstName, newLastName, userId);
+    }
+
+    public User getUserByEmailAndPassword(String email, String userPassword) {
+        String query = "SELECT * FROM user WHERE email = ? AND user_password = ?";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+        List<User> users = jdbcTemplate.query(query, rowMapper, email, userPassword);
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            return null;
+        }
     }
 }
