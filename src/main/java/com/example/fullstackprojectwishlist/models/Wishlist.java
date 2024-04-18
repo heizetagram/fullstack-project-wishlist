@@ -8,12 +8,6 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public Wishlist(int wishlistId, int userId, String wishlistName) {
-        this.wishlistId = wishlistId;
-        this.userId = userId;
-        this.wishlistName = wishlistName;
-    }
-
     public int getWishlistId() {
         return wishlistId;
     }
