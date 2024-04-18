@@ -38,12 +38,6 @@ public class UserController {
     }
 
     // Update user
-    @GetMapping("/prepareUserUpdate")
-    public String updateUserPage(@RequestParam int userId, Model model) {
-        User user = userService.getUserById(userId);
-        model.addAttribute("user", user);
-        return "user/user_update";
-    }
     @PostMapping("/updateUser")
     public String updateUserName(@RequestParam int userId, @RequestParam String newFirstName, @RequestParam String newLastName, Model model) {
         userService.updateUserName(userId, newFirstName, newLastName);
