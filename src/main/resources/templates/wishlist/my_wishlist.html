@@ -2,54 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>my_wishlist</title>
     <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
-<body>
-<header>
-    <nav class="navbar">
-        <a href="/static">Log ud</a>
-        <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
-        <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
-        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
-        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
-        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-    </nav>
-    <!--<div th:insert="~{home/nav :: nav}"></div>-->
-</header>
-
-<a th:href="@{/myWishlists(userId=${user.userId})}"><< Overblik</a>
-<h1 th:text="${wishlist.wishlistName}"></h1>
-<p><h3>Kopier linket for at dele din ønskeliste med andre:</h3>
-<div class="link-box">
-    <a th:text="'http://127.0.0.1:8080/wish?wishlistId=' + ${wishlist.wishlistId} + '&userId=' + ${user.userId}"></a>
-</div>
-<br>
-
-
-<table>
-    <thead><td>Produkt</td><td>Beskrivelse</td><td>Pris</td></thead>
-    <tr th:each="wish : ${wishes}">
-        <td th:text="${wish.wishName}"></td>
-        <td th:text="${wish.wishDescription}"></td>
-        <td th:text="${wish.price}"></td>
-        <td><form action="/prepareWishUpdate" method="get">
-            <input type="hidden" name="wishId" th:value="${wish.wishId}">
-            <input type="hidden" name="userId" th:value="${user.userId}">
-            <button type="submit">Opdater</button>
-        </form></td>
-        <td><form action="/deleteWish" method="post">
-            <input type="hidden" name="wishId" th:value="${wish.wishId}">
-            <input type="hidden" name="userId" th:value="${user.userId}">
-            <button type="submit">Slet</button>
-        </form></td>
-    </tr>
-</table>
-<form action="/newWish" method="get">
-    <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
-    <input type="hidden" name="userId" th:value="${user.userId}">
-    <button type="submit">Tilføj Ønske</button>
-</form>
-<div class="div2" th:insert="~{home/footer :: footer}"></div>
+<body id="remove-body-bottom-padding">
+    <header>
+        <nav class="navbar">
+            <a href="/">Log ud</a>
+            <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+            <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+            <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+            <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
+            <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+        </nav>
+    </header>
+    <div class="center-page">
+        <div id="center-myWishlist-form">
+            <div class="form-box">
+                <a id="overview" th:href="@{/myWishlists(userId=${user.userId})}">< Overblik</a>
+                <br>
+                <br>
+                <h1 th:text="${wishlist.wishlistName}"></h1>
+                <br>
+                <table id="wishes-table">
+                    <thead><td id="table-product">PRODUKT</td><td id="table-description">BESKRIVELSE</td><td>PRIS</td></thead>
+                    <tr class="general-wish-info" th:each="wish : ${wishes}">
+                        <td th:text="${wish.wishName}"></td>
+                        <td id="wish-info-description" th:text="${wish.wishDescription}"></td>
+                        <td th:text="${wish.price} + ' kr.'"></td>
+                        <td id="wish-update-td"><form action="/prepareWishUpdate" method="get">
+                            <input type="hidden" name="wishId" th:value="${wish.wishId}">
+                            <input type="hidden" name="userId" th:value="${user.userId}">
+                            <button id="wish-update-button" class="wish-button" type="submit">✎ Rediger</button>
+                        </form></td>
+                        <td id="wish-delete-td"><form action="/deleteWish" method="post">
+                            <input type="hidden" name="wishId" th:value="${wish.wishId}">
+                            <input type="hidden" name="userId" th:value="${user.userId}">
+                            <button id="wish-delete-button" class="wish-button" type="submit">🗑 Slet</button>
+                        </form></td>
+                    </tr>
+                </table>
+                <form action="/newWish" method="get">
+                    <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <button type="submit" class="wish-add-button">+ TILFØJ ØNSKE</button>
+                </form>
+                <div class="copy-link-box">
+                    <div class="center-link-text">
+                        <p><h3>Kopiér linket for at dele din ønskeliste med andre:</h3>
+                    </div>
+                    <div class="link-box">
+                        <a th:text="'http://127.0.0.1:8080/wish?wishlistId=' + ${wishlist.wishlistId} + '&userId=' + ${user.userId}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

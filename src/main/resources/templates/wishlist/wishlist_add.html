@@ -5,7 +5,7 @@
     <title>Add Wishlist</title>
     <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
 </head>
-<body>
+<body id="remove-body-bottom-padding">
 <header>
     <nav class="navbar">
         <a href="/static">Log ud</a>
@@ -16,16 +16,25 @@
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
 </header>
-<a th:href="@{/myWishlists(userId=${user.userId})}"><< Overblik</a>
-<h1>Add Wishlist</h1>
-<form action="/insert_wishlist" method="post">
-    <input type="hidden" id="userId" name="userId" th:value="${user.userId}">
-    <label for="wishlistName">Wishlist Name:</label>
-    <input type="text" id="wishlistName" name="wishlistName">
-    <br>
-    <button type="submit">Add Wishlist</button>
-</form>
-<br>
+<div class="center-page">
+    <div class="center-form">
+        <div class="form-box">
+            <a id="overview" th:href="@{/myWishlists(userId=${user.userId})}">< Overblik</a>
+            <br>
+            <br>
+            <h2>Opret Ønskeliste</h2>
+                <br>
+                <form action="/insert_wishlist" method="post">
+                    <input type="hidden" id="userId" name="userId" th:value="${user.userId}">
+                    <label class="form-label" for="wishlistName">Ønskelistens titel</label>
+                    <input type="text" class="form-text-box" maxlength="20" id="wishlistName" name="wishlistName" placeholder="Indtast titel på ønskeliste" required>
+                    <br>
+                    <br>
+                    <button type="submit" class="operation-button applyButton">OPRET ØNSKELISTE</button>
+             </form>
+        </div>
+    </div>
+</div>
 <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

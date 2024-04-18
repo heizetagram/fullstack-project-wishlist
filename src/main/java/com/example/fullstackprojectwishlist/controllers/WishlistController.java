@@ -54,7 +54,7 @@ public class WishlistController {
         User user = userService.getUserById(userId);
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("user", user);
-        return "wishlist/update_wishlist";
+        return "wishlist/wishlist_update";
     }
 
     // User's wishlists
