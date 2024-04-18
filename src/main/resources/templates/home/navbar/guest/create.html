@@ -1,0 +1,7 @@
+<nav class="navbar">
+  <div class="img-pointer" th:onclick="|window.location.href='/'|" th:insert="~{home/navbar/navLogo :: b}"></div>
+  <a href="/login">Log ind</a>
+  <a class="active" href="/newUser">Opret Bruger</a>
+  <a href="/">Forside</a>
+  <div th:insert="~{home/footer :: footer}"></div>
+</nav>

@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
-<body id="remove-body-bottom-padding">
+<body id="login-body-padding">
 <header>
-    <nav class="navbar">
-        <a class="active" href="/login">Log ind</a>
-        <a href="/newUser">Opret Bruger</a>
-        <a href="/">Forside</a>
-        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo" onclick="window.location.href='/';" style="cursor:pointer;"/></b>
-        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-    </nav>
+    <div th:replace="~{home/navbar/guest/login}"></div>
 </header>
 <div class="center-page">
-    <div class="center-form">
+    <div class="center-form" id="center-user-form">
         <div class="form-box">
             <h2>Log ind med e-mail</h2>
             <br>
@@ -31,6 +25,8 @@
                 <label class="form-label" for="password">Kodeord</label>
                 <input type="password" class="form-text-box" id="password" name="userPassword" placeholder="Indtast kodeord" required>
                 <br>
+                <br>
+                <p class="form-proceed" id="form-proceed-invalid" th:text="${invalidMessage}"></p>
                 <br>
                 <button type="submit" class="operation-button applyButton">LOG IND</button>
             </form>

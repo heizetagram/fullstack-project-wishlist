@@ -3,53 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>my_user</title>
-    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <a href="/">Log ud</a>
-        <a class="active" th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
-        <a th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
-        <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
-        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
-        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-    </nav>
-</header>
-<div class="center-page" id="my-profile">
-    <div class="center-form">
-        <div class="form-box">
-            <h2>Rediger profil</h2>
-            <br>
-            <form action="/updateUser" method="post">
-                <input type="hidden" name="userId" th:value="${user.userId}">
-                <label class="form-label" for="newFirstName">Fornavn</label>
-                <input type="text" class="form-text-box" id="newFirstName" name="newFirstName" placeholder="Indtast fornavn" th:value="${user.firstName}" required></td>
+    <header>
+        <div th:replace="~{home/navbar/user/my-user}"></div>
+    </header>
+    <div class="center-page" id="my-profile">
+        <div class="center-form" id="center-user-form">
+            <div class="form-box">
+                <h2>Rediger profil</h2>
                 <br>
-                <br>
-                <label class="form-label" for="newLastName">Efternavn</label>
-                <input type="text" class="form-text-box" id="newLastName" name="newLastName" placeholder="Indtast efternavn" th:value="${user.lastName}" required></td>
-                <br>
-                <br>
-                <label class="form-label" for="newEmail">E-mail</label>
-                <input type="email" class="form-text-box" id="newEmail" name="newEmail" placeholder="Indtast e-mail" th:value="${user.email}" required>
-                <br>
-                <br>
-                <label class="form-label" for="newPassword">Kodeord</label>
-                <input type="password"  class="form-text-box" id="newPassword" name="newPassword" placeholder="Indtast kodeord" th:value="${user.userPassword}" required>
-                <br>
-                <br>
-                <button type="submit" class="operation-button saveChangesButton">GEM ÆNDRINGER</button>
-                <br>
-                <br>
-                <form action="/deleteUser" method="post">
+                <form action="/updateUserAttempt" method="post">
                     <input type="hidden" name="userId" th:value="${user.userId}">
-                    <button class="operation-button deleteButton" type="submit">🗑 SLET MIN PROFIL </button>
-                </form>
-             </form>
+                    <label class="form-label" for="newFirstName">Fornavn</label>
+                    <input type="text" maxlength="30" class="form-text-box" id="newFirstName" name="newFirstName" placeholder="Indtast fornavn" th:value="${user.firstName}" required></td>
+                    <br>
+                    <br>
+                    <label class="form-label" for="newLastName">Efternavn</label>
+                    <input type="text" maxlength="30" class="form-text-box" id="newLastName" name="newLastName" placeholder="Indtast efternavn" th:value="${user.lastName}" required></td>
+                    <br>
+                    <br>
+                    <label class="form-label" id="label-email" for="newEmail">
+                        <a>E-mail</a>
+                        <a class="form-proceed" id="form-proceed-invalid" th:text="${invalidMessage}"></a>
+                    </label>
+                    <input type="email" maxlength="30" class="form-text-box" id="newEmail" name="newEmail" placeholder="Indtast e-mail" th:value="${user.email}" required>
+                    <br>
+                    <br>
+                    <label class="form-label" for="newPassword">Kodeord</label>
+                    <input type="password" maxlength="20" class="form-text-box" id="newPassword" name="newPassword" placeholder="Indtast kodeord" th:value="${user.userPassword}" required>
+                    <br>
+                    <br>
+                    <p class="form-proceed" id="form-proceed-valid" th:text="${validMessage}"></p>
+                    <br>
+                    <button type="submit" class="operation-button saveChangesButton">GEM ÆNDRINGER</button>
+                    <br>
+                    <br>
+                    <form action="/deleteUser" method="post">
+                        <input type="hidden" name="userId" th:value="${user.userId}">
+                        <button class="operation-button deleteButton" type="submit">🗑 SLET MIN PROFIL </button>
+                    </form>
+                 </form>
+            </div>
         </div>
     </div>
-</div>
-<div class="div2" th:insert="~{home/footer :: footer}"></div>
+    <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>
