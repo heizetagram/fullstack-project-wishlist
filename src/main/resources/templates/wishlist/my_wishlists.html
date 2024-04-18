@@ -22,16 +22,16 @@
     <br>
     <div class="wishlist-container">
       <span th:each="wishlist : ${wishlists}" class="wishlist-box">
-          <form action="/wishlist/update" method="get" class="wishlist-form-button">
-            <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
+          <form th:id="'wishForm_' + ${wishlist.wishlistId}" class="wishlist-form-button" action="wish" method="get">
+            <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
             <input type="hidden" name="userId" th:value="${user.userId}">
               <button type="submit" class="wishlist-name-button">
                 <h3 th:text="${wishlist.wishlistName}">Wishlist Name</h3>
               </button>
             </form>
         <div class="wishlist-lower-box">
-            <form th:id="'wishForm_' + ${wishlist.wishlistId}" class="wishlist-form-button" action="wish" method="get">
-              <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+            <form action="/wishlist/update" method="get" class="wishlist-form-button">
+              <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
               <input type="hidden" name="userId" th:value="${user.userId}">
             <button type="submit" id="wishlist-update-button" class="wishlist-button">✎ Rediger</button>
           </form>
