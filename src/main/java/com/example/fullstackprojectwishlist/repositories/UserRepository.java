@@ -20,28 +20,21 @@ public class UserRepository {
         jdbcTemplate.update(query, firstName, lastName, email, userPassword);
     }
 
-
     public User getUserById(int userId) {
-        String query = "SELECT * FROM user WHERE user_Id = ?;";
+        String query = "SELECT * FROM user WHERE user_id = ?;";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.queryForObject(query, rowMapper, userId);
     }
 
-    public void updateUserById(int userId, String firstName, String lastName, String email, String userPassword) {
-        String query = "UPDATE user " +
-                "SET userId = ? " +
-                "first_name = ?" +
-                "last_name = ?" +
-                "email = ?" +
-                "user_password = ?" +
-                "WHERE userId = ?";
-        jdbcTemplate.update(query, userId, firstName, lastName, email, userPassword);
-    }
-
-    public List<User> getAllUsers() {
-        String query = "SELECT  * FROM user";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper(User.class);
-        return jdbcTemplate.query(query, rowMapper);
+    public User getUserByEmail(String email) {
+        String query = "SELECT * FROM user WHERE email = ?;";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+        List<User> users = jdbcTemplate.query(query, rowMapper, email);
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
+            return null;
+        }
     }
 
     public void deleteUserById(int userId) {
@@ -49,9 +42,14 @@ public class UserRepository {
         jdbcTemplate.update(query, userId);
     }
 
-    public void updateUserName(int userId, String newFirstName, String newLastName) {
-        String query = "UPDATE user SET first_name = ?, last_name = ? WHERE user_id = ?";
-        jdbcTemplate.update(query, newFirstName, newLastName, userId);
+    public void updateUserWithEmail(int userId, String newFirstName, String newLastName, String newEmail, String newPassword) {
+        String query = "UPDATE user SET first_name = ?, last_name = ?, email = ?, user_password = ? WHERE user_id = ?";
+        jdbcTemplate.update(query, newFirstName, newLastName, newEmail, newPassword, userId);
+    }
+
+    public void updateUserWithoutEmail(int userId, String newFirstName, String newLastName, String newPassword) {
+        String query = "UPDATE user SET first_name = ?, last_name = ?, user_password = ? WHERE user_id = ?";
+        jdbcTemplate.update(query, newFirstName, newLastName, newPassword, userId);
     }
 
     public User getUserByEmailAndPassword(String email, String userPassword) {

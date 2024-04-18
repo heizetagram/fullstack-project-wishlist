@@ -21,14 +21,19 @@ public class UserController {
     public String insert() {
         return "user/user_add";
     }
-    @PostMapping("/addUser")
-    public String addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userPassword, Model model) {
-        userService.addUser(firstName, lastName, email, userPassword);
-        User user = userService.getUserByEmailAndPassword(email, userPassword);
-        model.addAttribute("user", user);
-        return "user/user_frontpage";
+    @PostMapping("/createUserAttempt")
+    public String createUserAttempt(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userPassword, Model model) {
+        boolean createUserAttempt = userService.checkIfEmailIsTaken(email);
+        model.addAttribute("invalidMessage", "E-mail findes allerede");
+        if (!createUserAttempt) {
+            userService.addUser(firstName, lastName, email, userPassword);
+            User user = userService.getUserByEmailAndPassword(email, userPassword);
+            model.addAttribute("user", user);
+            return "user/user_frontpage";
+        } else {
+            return "user/user_add";
+        }
     }
-
 
     // Delete user
     @PostMapping("/deleteUser")
@@ -38,9 +43,17 @@ public class UserController {
     }
 
     // Update user
-    @PostMapping("/updateUser")
-    public String updateUserName(@RequestParam int userId, @RequestParam String newFirstName, @RequestParam String newLastName, Model model) {
-        userService.updateUserName(userId, newFirstName, newLastName);
+    @PostMapping("/updateUserAttempt")
+    public String updateUserAttempt(@RequestParam int userId, @RequestParam String newFirstName, @RequestParam String newLastName, @RequestParam String newEmail, @RequestParam String newPassword, Model model) {
+        boolean updateUserAttemptByEmail = userService.checkIfEmailIsTaken(newEmail);
+        if (!updateUserAttemptByEmail) {
+            userService.updateUserWithEmail(userId, newFirstName, newLastName, newEmail, newPassword);
+            model.addAttribute("validMessage", "Dine ændringer er blevet gemt");
+        } else {
+            model.addAttribute("invalidMessage", "E-mail findes allerede");
+            userService.updateUserWithoutEmail(userId, newFirstName, newLastName, newPassword);
+            model.addAttribute("validMessage", "Dine ændringer er blevet gemt");
+        }
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
         return "user/my_user";
@@ -49,13 +62,14 @@ public class UserController {
     // User login
     @PostMapping("/loginAttempt")
     public String loginAttempt(@RequestParam String email, @RequestParam String userPassword, Model model) {
+        model.addAttribute("invalidMessage", "E-mail eller kodeord er forkert");
         boolean loginAttempt = userService.login(email, userPassword);
         if (loginAttempt) {
             User user = userService.getUserByEmailAndPassword(email, userPassword);
             model.addAttribute("user", user);
             return "user/user_frontpage";
         } else {
-            return "redirect:/login";
+            return "home/login";
         }
     }
 
