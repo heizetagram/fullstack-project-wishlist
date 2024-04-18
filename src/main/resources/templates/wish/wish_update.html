@@ -16,17 +16,35 @@
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
 </header>
-<a th:href="@{/wish(wishlistId=${wish.wishlistId}, userId=${user.userId})}">&lt;&lt; Overblik</a>
-    <h2>Opdater ønskeliste</h2>
-    <form action="/updateWish" method="post">
-        <input type="hidden" name="userId" th:value="${user.userId}">
-        <input type="hidden" name="wishId" th:value="${wish.wishId}">
-        <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}">
-        <input type="text" name="wishName" placeholder="Indtast nyt produktnavn" th:value="${wish.wishName}">
-        <input type="text" name="wishDescription" placeholder="Indtast ny beskrivelse" th:value="${wish.wishDescription}">
-        <input type="text" name="price" placeholder="Indtast nye pris" th:value="${wish.price}">
-        <button type="submit" class="update-btn">Gem</button>
-    </form>
+<div class="center-page">
+        <div class="center-form">
+            <div class="form-box">
+                <a id="overview" th:href="@{/wish(wishlistId=${wish.wishlistId}, userId=${user.userId})}">&lt; Overblik</a>
+                <br>
+                <br>
+                <h2>Rediger Ønske</h2>
+                <br>
+                <form action="/updateWish" method="post">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <input type="hidden" name="wishId" th:value="${wish.wishId}">
+                    <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}">
+                    <label class="form-label" for="wishName">Navngiv ønske</label>
+                    <input type="text" class="form-text-box" maxlength="20" id="wishName" name="wishName" placeholder="Indtast ønskets titel" th:value="${wish.wishName}" required>
+                    <br>
+                    <br>
+                    <label class="form-label" for="wishDescription">Beskrivelse</label>
+                    <input type="text" class="form-text-box" maxlength="30" id="wishDescription" name="wishDescription" placeholder="Indtast beskrivelse" th:value="${wish.wishDescription}" required>
+                    <br>
+                    <br>
+                    <label class="form-label" for="price">Pris</label>
+                    <input type="text" class="form-text-box" step="0.01" min="0" id="price" name="price" placeholder="Indtast pris" th:value="${wish.price}" required>
+                    <br>
+                    <br>
+                    <button type="submit" class="operation-button saveChangesButton">GEM ÆNDRINGER</button>
+                </form>
+            </div>
+        </div>
+</div>
 <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

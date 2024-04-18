@@ -14,14 +14,16 @@
             <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo" onclick="window.location.href='/';" style="cursor:pointer;"/></b>
             <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
         </nav>
-        <!--<div th:insert="~{home/nav :: nav}"></div>-->
     </header>
-        <div class="parent" style="background-color: #fffef4">
+    <div class="center-page">
+        <div class="frontpage-center">
+            <div class="user-frontpage">
+                <h1>Velkommen til <span class="site-title">Ønskelisten</span></h1>
+                <br>
+                <h3>Her går dine ønsker i opfyldelse!</h3>
+            </div>
+    <   /div>
     </div>
-<div class="div1">
-    <h1 style="color:white" >Velkommen til Ønskelisten</h1>
-    <h2 style="color:white" >Her går dine ønsker i opfyldelse!</h2>
-</div>
-    <div class="div2" th:insert="~{home/footer :: footer}"></div>
+    <div th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

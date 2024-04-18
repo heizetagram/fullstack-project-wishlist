@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update_wishlist</title>
+    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/">Log ud</a>
+            <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+            <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+            <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+            <b><img th:src="@{/images/oenskelisten.png}" id="frontpageLogo"/></b>
+            <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
+        </nav>
+    </header>
+    <div class="center-page">
+        <div class="center-form">
+            <div class="form-box">
+                <a id="overview" th:href="@{/myWishlists(userId=${user.userId})}">< Overblik</a>
+                <br>
+                <br>
+                <h2>Rediger Ønskelisten</h2>
+                <br>
+                <form action="/wishlist/insert_update" method="post">
+                    <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <label class="form-label" for="newName">Ønskelistens titel</label>
+                    <input type="text" class="form-text-box" maxlength="20" id="newName" name="newName" placeholder="Indtast ønskelistens titel" th:value="${wishlist.wishlistName}" required>
+                    <br>
+                    <br>
+                    <button type="submit" class="operation-button saveChangesButton">GEM ÆNDRINGER</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="div2" th:insert="~{home/footer :: footer}"></div>
+</body>
+</html>

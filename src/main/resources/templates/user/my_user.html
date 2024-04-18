@@ -16,29 +16,40 @@
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
 </header>
-
-<div class="update-form-container">
-    <table>
-        <thead>
-        <td>Fornavn</td>
-        <td>Efternavn</td>
-        </thead>
-        <form action="/updateUser" method="post">
-            <input type="hidden" name="userId" th:value="${user.userId}">
-            <tr>
-                <td><input type="text" name="newFirstName" placeholder="Indtast fornavn" th:value="${user.firstName}"></td>
-                <td><input type="text" name="newLastName" placeholder="Indtast efternavn" th:value="${user.lastName}"></td>
-            </tr>
-    </table>
-    <button type="submit" class="saveChangesButton">Gem Ændringer</button>
-    </form>
-
+<div class="center-page">
+    <div class="center-form">
+        <div class="form-box">
+            <h2>Rediger profil</h2>
+            <br>
+            <form action="/updateUser" method="post">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <label class="form-label" for="newFirstName">Fornavn</label>
+                <input type="text" class="form-text-box" id="newFirstName" name="newFirstName" placeholder="Indtast fornavn" th:value="${user.firstName}" required></td>
+                <br>
+                <br>
+                <label class="form-label" for="newLastName">Efternavn</label>
+                <input type="text" class="form-text-box" id="newLastName" name="newLastName" placeholder="Indtast efternavn" th:value="${user.lastName}" required></td>
+                <br>
+                <br>
+                <label class="form-label" for="newEmail">E-mail</label>
+                <input type="email" class="form-text-box" id="newEmail" name="newEmail" placeholder="Indtast e-mail" th:value="${user.email}" required>
+                <br>
+                <br>
+                <label class="form-label" for="newPassword">Kodeord</label>
+                <input type="password"  class="form-text-box" id="newPassword" name="newPassword" placeholder="Indtast kodeord" th:value="${user.userPassword}" required>
+                <br>
+                <br>
+                <button type="submit" class="operation-button saveChangesButton">GEM ÆNDRINGER</button>
+                <br>
+                <br>
+                <form action="/deleteUser" method="post">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <button class="operation-button deleteButton" type="submit">🗑 SLET MIN PROFIL </button>
+                </form>
+             </form>
+        </div>
+    </div>
 </div>
-<br>
-<form action="/deleteUser" method="post">
-    <input type="hidden" name="userId" th:value="${user.userId}">
-    <button class="deleteButton" type="submit">SLET MIN PROFIL </button>
-</form>
 <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
 </html>

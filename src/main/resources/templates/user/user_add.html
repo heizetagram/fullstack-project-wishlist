@@ -15,19 +15,32 @@
         <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
     </nav>
 </header>
-<div class="add-form-container">
-    <h2>Add User</h2>
-    <form action="/addUser" method="post">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter email" required>
-        <label for="userPassword">Password:</label>
-        <input type="password" id="userPassword" name="userPassword" placeholder="Enter password" required>
-        <button type="submit" class="add-btn">Add User</button>
-    </form>
+<div class="center-page">
+    <div class="center-form">
+        <div class="form-box">
+            <h2>Opret Bruger</h2>
+            <br>
+            <form action="/addUser" method="post">
+                <label class="form-label" for="firstName">Fornavn</label>
+                <input type="text" class="form-text-box" id="firstName" name="firstName" placeholder="Indtast fornavn" required>
+                <br>
+                <br>
+                <label class="form-label" for="lastName">Efternavn</label>
+                <input type="text" class="form-text-box" id="lastName" name="lastName" placeholder="Indtast efternavn" required>
+                <br>
+                <br>
+                <label class="form-label" for="email">E-mail</label>
+                <input type="email" class="form-text-box" id="email" name="email" placeholder="Enter email" required>
+                <br>
+                <br>
+                <label class="form-label" for="userPassword">Kodeord</label>
+                <input type="password" class="form-text-box" id="userPassword" name="userPassword" placeholder="Indtast kodeord" required>
+                <br>
+                <br>
+                <button type="submit" class="operation-button applyButton">OPRET BRUGER</button>
+            </form>
+        </div>
+    </div>
 </div>
 <div class="div2" th:insert="~{home/footer :: footer}"></div>
 </body>
