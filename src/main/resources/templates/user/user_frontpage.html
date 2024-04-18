@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>user_frontpage</title>
-    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body id="frontpageBody">
     <header>
-        <nav class="navbar">
-            <a href="/">Log ud</a>
-            <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
-            <a th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
-            <a class="active" th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
-            <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo"/></b>
-            <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-        </nav>
+        <div th:replace="~{home/navbar/user/frontpage}"></div>
     </header>
     <div class="center-page">
         <div class="frontpage-center">

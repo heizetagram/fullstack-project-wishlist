@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>update_wishlist</title>
-    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body id="remove-body-bottom-padding">
     <header>
-        <nav class="navbar">
-            <a href="/">Log ud</a>
-            <a th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
-            <a class="active" th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
-            <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
-            <b><img th:src="@{/images/oenskelisten.png}" id="frontpageLogo"/></b>
-            <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-        </nav>
+        <div th:replace="~{home/navbar/user/wishlist}"></div>
     </header>
     <div class="center-page">
         <div class="center-form">
             <div class="form-box">
-                <a id="overview" th:href="@{/myWishlists(userId=${user.userId})}">< Overblik</a>
+                <a class="overview" th:href="@{/myWishlists(userId=${user.userId})}">< Overblik</a>
                 <br>
                 <br>
                 <h2>Rediger Ønskelisten</h2>
                 <br>
-                <form action="/wishlist/insert_update" method="post">
+                <form action="/wishlistInsertUpdate" method="post">
                     <input type="hidden" name="id" th:value="${wishlist.wishlistId}">
                     <input type="hidden" name="userId" th:value="${user.userId}">
                     <label class="form-label" for="newName">Ønskelistens titel</label>

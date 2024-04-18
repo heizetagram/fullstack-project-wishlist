@@ -3,38 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Add User</title>
-    <link rel="stylesheet" ref="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body>
 <header>
-    <nav class="navbar">
-        <a href="/login">Log ind</a>
-        <a class="active" href="/newUser">Opret Bruger</a>
-        <a href="/">Forside</a>
-        <b><img th:src="@{images/oenskelisten.png}" id="frontpageLogo" onclick="window.location.href='/';" style="cursor:pointer;"/></b>
-        <b><h1 id="frontpageHeaderName">Ønskelisten</h1></b>
-    </nav>
+    <div th:replace="~{home/navbar/guest/create}"></div>
 </header>
 <div class="center-page">
-    <div class="center-form">
+    <div class="center-form" id="center-user-form">
         <div class="form-box">
             <h2>Opret Bruger</h2>
             <br>
-            <form action="/addUser" method="post">
+            <form action="/createUserAttempt" method="post">
                 <label class="form-label" for="firstName">Fornavn</label>
-                <input type="text" class="form-text-box" id="firstName" name="firstName" placeholder="Indtast fornavn" required>
+                <input type="text" maxlength="30" class="form-text-box" id="firstName" name="firstName" placeholder="Indtast fornavn" required>
                 <br>
                 <br>
                 <label class="form-label" for="lastName">Efternavn</label>
-                <input type="text" class="form-text-box" id="lastName" name="lastName" placeholder="Indtast efternavn" required>
+                <input type="text" maxlength="30" class="form-text-box" id="lastName" name="lastName" placeholder="Indtast efternavn" required>
                 <br>
                 <br>
-                <label class="form-label" for="email">E-mail</label>
-                <input type="email" class="form-text-box" id="email" name="email" placeholder="Enter email" required>
+                <label class="form-label" id="label-email" for="email">
+                    <a>E-mail</a>
+                    <a class="form-proceed" id="form-proceed-invalid" th:text="${invalidMessage}"></a>
+                </label>
+                <input type="email" maxlength="30" class="form-text-box" id="email" name="email" placeholder="Enter email" required>
                 <br>
                 <br>
                 <label class="form-label" for="userPassword">Kodeord</label>
-                <input type="password" class="form-text-box" id="userPassword" name="userPassword" placeholder="Indtast kodeord" required>
+                <input type="password" maxlength="20" class="form-text-box" id="userPassword" name="userPassword" placeholder="Indtast kodeord" required>
                 <br>
                 <br>
                 <button type="submit" class="operation-button applyButton">OPRET BRUGER</button>

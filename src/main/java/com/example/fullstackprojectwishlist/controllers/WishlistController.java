@@ -23,38 +23,39 @@ public class WishlistController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/new_wishlist")
+    // Create wishlist
+    @GetMapping("/newWishlist")
     public String insert(@RequestParam int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
         return "wishlist/wishlist_add";
     }
-
-    @PostMapping("/insert_wishlist")
+    @PostMapping("/insertWishlist")
     public String addWishlist(@RequestParam int userId, @RequestParam String wishlistName) {
         wishlistService.addWishlist(userId, wishlistName);
         return "redirect:/myWishlists?userId=" + userId;
     }
 
-    @PostMapping("/wishlist/delete")
+    // Delete wishlist
+    @PostMapping("/wishlistDelete")
     public String deleteWishlist(@RequestParam int wishlistId, @RequestParam int userId) {
         wishlistService.deleteWishlist(wishlistId);
         return "redirect:/myWishlists?userId=" + userId;
     }
 
-   @PostMapping("/wishlist/insert_update")
-    public String updateWishlistName(@RequestParam int id, @RequestParam int userId, @RequestParam String newName) {
-        wishlistService.updateWishlist(id, newName);
-        return "redirect:/myWishlists?userId=" + userId;
-    }
-
-    @GetMapping("/wishlist/update")
+    // Update wishlist
+    @GetMapping("/wishlistUpdate")
     public String updateWishlistPage(@RequestParam int id, @RequestParam int userId, Model model) {
         Wishlist wishlist = wishlistService.getWishlist(id);
         User user = userService.getUserById(userId);
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("user", user);
         return "wishlist/wishlist_update";
+    }
+   @PostMapping("/wishlistInsertUpdate")
+    public String updateWishlistName(@RequestParam int id, @RequestParam int userId, @RequestParam String newName) {
+        wishlistService.updateWishlist(id, newName);
+        return "redirect:/myWishlists?userId=" + userId;
     }
 
     // User's wishlists

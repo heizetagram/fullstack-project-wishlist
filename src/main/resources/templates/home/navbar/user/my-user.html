@@ -1,0 +1,7 @@
+<nav class="navbar">
+  <div class="img-pointer" th:onclick="|window.location.href='@{/userFrontpage(userId=${user.userId})}'|" th:insert="~{home/navbar/navLogo :: b}"></div>
+  <a href="/">Log ud</a>
+  <a class="active" th:href="@{/myUser(userId=${user.userId})}">Min Profil</a>
+  <a th:href="@{/myWishlists(userId=${user.userId})}">Mine &Oslash;nskelister</a>
+  <a th:href="@{/userFrontpage(userId=${user.userId})}">Forside</a>
+</nav>
