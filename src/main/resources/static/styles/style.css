@@ -462,11 +462,10 @@ td {
     padding: 0.87rem;
     margin-top: 0.4rem;
     font-size: small;
-    text-transform: capitalize;
 }
 
-#password, #newPassword, #userPassword, #email, #newEmail {
-    text-transform: lowercase;
+#firstName, #lastName, #newFirstName, #newLastName {
+    text-transform: capitalize;
 }
 
 ::-webkit-input-placeholder {
