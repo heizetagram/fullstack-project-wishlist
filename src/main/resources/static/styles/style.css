@@ -176,9 +176,9 @@ td {
     text-transform: uppercase;
     border-radius: 6px;
     border: none;
-    padding: 0px 30px;
+    padding: 0 30px;
     height: 49px;
-    margin: 0px;
+    margin: 0;
     color: white !important;
     width: 100%;
     box-shadow: rgb(171 171 171 / 47%) 0 4px 30px;
@@ -464,6 +464,7 @@ td {
     font-size: small;
 }
 
+/* Capitalizes full name */
 #firstName, #lastName, #newFirstName, #newLastName {
     text-transform: capitalize;
 }
